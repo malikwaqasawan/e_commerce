@@ -9,14 +9,9 @@
   </head>
 
   <body>
-    <ul class="nav nav-tabs">
-      <li role="presentation" class="active"><a href="#">Index</a></li>
-    </ul>
     <% flash.each do |key,value| %>
       <%= value %>
     <% end %>
-
-
     <%= yield %>
   </body>
 </html>
