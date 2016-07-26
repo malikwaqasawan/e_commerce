@@ -1,4 +1,5 @@
 class Image < ApplicationRecord
-  belongs_to :imageable, polymorphic: true
+  belongs_to :imageable, polymorphic: true, optional: true
+  mount_uploader :photo, ImagesUploader
 
 end

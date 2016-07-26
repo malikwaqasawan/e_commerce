@@ -1,0 +1,14 @@
+<%= nested_form_for @product, multipart: true do |f|%>
+  <P> <%= f.label :name %> <%= f.text_field :name %> </P>
+  <P> <%= f.label :quantity %> <%= f.text_field :quantity %> </P>
+  <P> <%= f.label :price %> <%= f.text_field :price %> </P>
+
+  <%= f.fields_for :images do |p| %>
+    <%= p.file_field :photo %>
+    <%= p.link_to_remove "Remove this photo" %>
+  <% end %>
+  <p><%= f.link_to_add "Add a photo", :images %></p>
+
+  <%= f.submit %>
+
+<% end -%>

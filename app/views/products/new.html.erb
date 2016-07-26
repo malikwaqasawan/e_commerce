@@ -1,10 +1,6 @@
-<%= form_for @product do |f|%>
+<div class="container">
+  <h2>New</h2>
+  <%= render "form" %>
 
-	<h2>New</h2>
+</div>
 
-	<P>	<%= f.label :name %> <%= f.text_field :name %> </P>
-	<P> <%= f.label :quantity %> <%= f.text_field :quantity %> </P>
-	<P> <%= f.label :price %> <%= f.text_field :price %> </P>
-
-	<%= f.submit "Add Product" %>
-<% end -%>

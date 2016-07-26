@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160725074551) do
+ActiveRecord::Schema.define(version: 20160726090727) do
 
   create_table "cart_variants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "quantity"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20160725074551) do
     t.integer  "imageable_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
+    t.string   "photo"
     t.index ["imageable_id"], name: "index_images_on_imageable_id", using: :btree
     t.index ["imageable_type"], name: "index_images_on_imageable_type", using: :btree
   end
