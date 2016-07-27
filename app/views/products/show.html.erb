@@ -1,13 +1,43 @@
+<div class="container">
+  <nav class="navbar navbar-light bg-faded">
+    <div class="collapse navbar-toggleable-xs" id="navbar-header">
+      <a class="navbar-brand" href="#">Show</a>
+    </div>
+  </nav>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <hr/>
+    <div class="row" style="text-align:center">
+      <div class="col-md-3">
+        <strong> <label class='control-label'> Name </label> </strong>
+      </div>
+      <div class="col-md-3">
+        <strong> <label class='control-label'> Quantity</label> </strong>
+      </div>
+      <div class="col-md-3">
+        <strong> <label class='control-label'> Price </label> </strong>
+      </div>
+      <div class="col-md-3">
+        <strong> <label class='control-label'> Picture </label> </strong>
+      </div>
+    </div>
+    <hr/>
+    <div class="row" style="text-align:center">
+      <div class="col-md-3" >
+       <%=  @product.name %>
+      </div>
+      <div class="col-md-3">
+       <%= @product.quantity %>
+      </div>
+      <div class="col-md-3">
+       <%= @product.price %>
+      </div>
+      <div class="col-md-3">
+        <%= image_tag @product.images.first.photo_url(:thumb) , class:"img-circle" %>
+      </div>
+    </div>
+    <hr/>
+  </div>
+</div>
 
-<table>
-  <tr>
-     <th> <h2>Name</h2> </th>
-     <th> <h2>Quantity</h2> </th>
-     <th> <h2>Price</h2> </th>
-  </tr>
-  <tr>
-  	<td> <%= @product.name %> </td>
-  	<td> <%= @product.quantity%> </td>
-  	<td> <%= @product.price %> </td>
-  </tr>
-</table>
+</div>

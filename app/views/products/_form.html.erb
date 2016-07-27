@@ -1,14 +1,41 @@
 <%= nested_form_for @product, multipart: true do |f|%>
-  <P> <%= f.label :name %> <%= f.text_field :name %> </P>
-  <P> <%= f.label :quantity %> <%= f.text_field :quantity %> </P>
-  <P> <%= f.label :price %> <%= f.text_field :price %> </P>
-
-  <%= f.fields_for :images do |p| %>
-    <%= p.file_field :photo %>
-    <%= p.link_to_remove "Remove this photo" %>
-  <% end %>
-  <p><%= f.link_to_add "Add a photo", :images %></p>
-
-  <%= f.submit %>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <form>
+        <fieldset class="form-group">
+          <strong> <%= f.label :name, class: 'control-label' %> </strong>
+          <%= f.text_field :name, class: 'form-control' %>
+        </fieldset>
+        <fieldset class="form-group">
+          <strong> <%= f.label :quantity, class: 'control-label' %> </strong>
+          <%= f.text_field :quantity, class: 'form-control' %>
+        </fieldset>
+        <fieldset class="form-group">
+          <strong> <%= f.label :price, class: 'control-label' %> </strong>
+          <%= f.text_field :price, class: 'form-control' %>
+        </fieldset>
+        <fieldset class="form-group">
+          <strong> <label class='control-label'> Choose a Photo</label> </strong>
+          <%= f.fields_for :images do |p| %>
+            <div class="row">
+              <div class="col-md-8">
+                <%= p.file_field :photo, class: 'form-control' %>
+              </div>
+              <div class="col-md-4">
+                <%= p.link_to_remove "Remove this photo"%>
+              </div>
+            </div>
+          <% end %>
+          <div>
+          <%= f.link_to_add "Add a photo", :images %>
+          </div>
+        </fieldset>
+        <fieldset class="form-group" style="text-align: right">
+          <%= f.submit %>
+        </fieldset>
+      </form>
+    </div>
+  </div>
 
 <% end -%>
+
