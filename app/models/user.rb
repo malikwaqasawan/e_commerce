@@ -7,7 +7,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 	has_one :cart
 	has_many :orders
-  has_many :payment
+  has_many :payments
 
   after_create :create_cart
 

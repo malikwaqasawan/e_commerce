@@ -1,0 +1,39 @@
+<div class="container">
+  <div id="show-notice" class="alert alert-success hidden top10" role="alert"></div>
+  <nav class="navbar navbar-light bg-faded">
+    <div class="collapse navbar-toggleable-xs" id="navbar-header">
+      <a class="navbar-brand" href="#">Orders</a>
+    </div>
+  </nav> <!-- /navbar -->
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <hr/>
+      <div class="row">
+        <div class="col-md-4">
+         <strong> <label class='control-label'> Order_ID </label> </strong>
+        </div>
+        <div class="col-md-4">
+          <strong> <label class='control-label'> Total Amount </label> </strong>
+        </div>
+        <div class="col-md-4">
+          <strong> <label class='control-label'> Date </label> </strong>
+        </div>
+      </div>
+      <hr/>
+      <% @orders.each do |order| %>
+        <div class="row">
+          <div class="col-md-4">
+            <%= order.id %>
+          </div>
+          <div class="col-md-4">
+            <%= order.cost %>
+          </div>
+          <div class="col-md-4">
+            <%= order.order_date %>
+          </div>
+        </div>
+        <hr/>
+      <% end %>
+    </div>
+  </div>
+</div>

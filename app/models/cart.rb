@@ -11,4 +11,5 @@ class Cart < ApplicationRecord
     end
     total_amount
   end
+
 end
