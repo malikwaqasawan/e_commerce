@@ -9,9 +9,9 @@
   </head>
 
   <body>
-    <% flash.each do |key,value| %>
-      <%= value %>
-    <% end %>
+    <div class="container top10">
+      <%= flash_messages %>
+    </div>
     <%= yield %>
   </body>
 </html>

@@ -1,0 +1,62 @@
+<div class="container">
+  <div id="show-notice" class="alert alert-success hidden top10" role="alert"></div>
+  <nav class="navbar navbar-light bg-faded">
+    <div class="collapse navbar-toggleable-xs" id="navbar-header">
+      <a class="navbar-brand" href="#">Cart</a>
+    </div>
+  </nav> <!-- /navbar -->
+  <div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <hr/>
+    <div class="row" style="text-align:center">
+      <div class="col-md-3">
+        <strong> <label class='control-label'> Name </label> </strong>
+      </div>
+      <div class="col-md-2">
+        <strong> <label class='control-label'> Qunatity </label> </strong>
+      </div>
+      <div class="col-md-2">
+        <strong> <label class='control-label'> Unit Price </label> </strong>
+      </div>
+      <div class="col-md-3">
+        <strong> <label class='control-label'> Picture </label> </strong>
+      </div>
+      <div class="col-md-2">
+        <strong> <label class='control-label'> Total Price </label> </strong>
+      </div>
+    </div>
+    <hr/>
+    <% current_user.cart.cart_variants.each do |cart_variant| %>
+      <div class="row" style="text-align:center">
+        <div class="col-md-3" >
+          <%= cart_variant.variant.product.name%>
+          <br/>
+          <strong> <%=  link_to "Remove" ,delete_cart_variant_path(cart_variant.id),data: { confirm: 'Are you sure?'}, method: :delete %>  </strong>
+        </div>
+        <div class="col-md-2">
+          <%= select_tag :quantity, options_for_select([["1",1],["2",2],["3",3],["4",4],["5",5]],cart_variant.quantity), class: 'form-control change-quantity', data: {cart_variant_id: cart_variant.id} %>
+      </div>
+        <div class="col-md-2">
+          <%= cart_variant.variant.product.price %>
+        </div>
+        <div class="col-md-3">
+          <%= image_tag cart_variant.variant.product.images.first.photo_url(:thumb) , class:"img-circle" %>
+        </div>
+        <div class="col-md-2" id="total-amount-<%= cart_variant.id %>">
+          <%= (cart_variant.variant.product.price)*(cart_variant.quantity) %>
+        </div>
+      </div>
+      <hr/>
+    <% end %>
+    <div class="row" style="text-align:center">
+      <div class="col-md-3 col-md-offset-6" >
+        <strong> Total amount: </strong>
+      </div>
+      <div class="col-md-3">
+        <strong id="total-price"> <%= current_user.cart.total_price %> </strong>
+      </div>
+    </div>
+    <hr/>
+  </div>
+
+</div>

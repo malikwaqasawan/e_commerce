@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160726090727) do
+ActiveRecord::Schema.define(version: 20160728090800) do
 
   create_table "cart_variants", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "quantity"
@@ -41,12 +41,12 @@ ActiveRecord::Schema.define(version: 20160726090727) do
 
   create_table "order_items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.integer  "quantity"
     t.float    "price",      limit: 24
     t.integer  "order_id"
     t.integer  "variant_id"
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
+    t.integer  "quantity"
     t.index ["order_id"], name: "index_order_items_on_order_id", using: :btree
     t.index ["variant_id"], name: "index_order_items_on_variant_id", using: :btree
   end
@@ -60,9 +60,19 @@ ActiveRecord::Schema.define(version: 20160726090727) do
     t.index ["user_id"], name: "index_orders_on_user_id", using: :btree
   end
 
+  create_table "payments", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "transaction_id"
+    t.float    "amount",         limit: 24
+    t.integer  "user_id"
+    t.integer  "order_id"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["order_id"], name: "index_payments_on_order_id", using: :btree
+    t.index ["user_id"], name: "index_payments_on_user_id", using: :btree
+  end
+
   create_table "products", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.integer  "quantity"
     t.float    "price",      limit: 24
     t.datetime "created_at",            null: false
     t.datetime "updated_at",            null: false
@@ -98,5 +108,7 @@ ActiveRecord::Schema.define(version: 20160726090727) do
   add_foreign_key "order_items", "orders"
   add_foreign_key "order_items", "variants"
   add_foreign_key "orders", "users"
+  add_foreign_key "payments", "orders"
+  add_foreign_key "payments", "users"
   add_foreign_key "variants", "products"
 end

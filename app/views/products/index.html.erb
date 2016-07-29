@@ -1,11 +1,15 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2 col-md-offset-8">
+    <div class="col-md-2 col-md-offset-6">
+      <strong><%= link_to('View Cart', carts_path) %></strong>
+    </div>
+    <div class="col-md-2">
       <strong><%= link_to('Change password', edit_user_registration_path) %></strong>
     </div>
     <div class="col-md-2">
       <strong><%= link_to('Logout', destroy_user_session_path) %></strong>
     </div>
+
   </div>
 </div>
 
@@ -26,12 +30,17 @@
 						<%= link_to product.name, product %>
 					</h4>
 					<div class="row">
-						<div class="col-md-6">
+						<div class="col-md-4">
 							<%=  link_to "Edit", edit_product_path(product) %>
 						</div>
-						<div class="col-md-6">
-							<%=  link_to "Delete", product,:data => {:confirm => 'Are you sure?'}, :method => :delete %>
-						</div>
+            <div class="col-md-4">
+              <%= form_for( product, url: add_to_cart_path(product.id), method: :post) do |f|%>
+                <%= f.submit "Add to Cart" %>
+              <% end %>
+            </div>
+						<div class="col-md-4">
+            </div>
+							<%=  link_to "Delete", product,data: { confirm: 'Are you sure?'}, method: :delete %>
 					</div>
 					<hr />
 				</div>

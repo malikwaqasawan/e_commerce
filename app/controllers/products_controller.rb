@@ -13,11 +13,11 @@ class ProductsController < ApplicationController
 	end
 
 	def update
-
 		if @product.update_attributes(product_params)
-			redirect_to products_path, notice: "Product Updated Successfully"
+			alert(:success, 'Product Updated Successfully')
+			redirect_to products_path
 		else
-			render "edit"
+			render 'edit'
 		end
 	end
 
@@ -29,18 +29,18 @@ class ProductsController < ApplicationController
 		@product = Product.new(product_params)
 
 		if @product.save
-			redirect_to products_path, notice: "Product Created Successfully"
+		  alert(:success,'Product Created Successfully')
+			redirect_to products_path
 		else
-			render "new"
+			render 'new'
 		end
 	end
 
 	def destroy
 		@product.destroy
-
-		redirect_to products_path, notice: "Product Deleted Successfully"
+		alert(:success,'Product Deleted Successfully')
+		redirect_to products_path
 	end
-
 
 	private
 
@@ -51,4 +51,5 @@ class ProductsController < ApplicationController
 	def product_params
 		params.require(:product).permit(:name, :quantity, :price, images_attributes: [:photo, :id, :_destroy])
 	end
+
 end
